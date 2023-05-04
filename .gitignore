@@ -1,2 +1,4 @@
 /venv/
 /.idea/
+/postgresql/postgres-data/
+/postgresql/pgadmin/
