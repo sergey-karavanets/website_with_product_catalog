@@ -2,3 +2,4 @@
 /.idea/
 /postgresql/postgres-data/
 /postgresql/pgadmin/
+/mysite/goods/migrations/
