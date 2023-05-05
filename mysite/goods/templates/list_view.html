@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}
+<title>Список товаров</title>
+{% endblock %}
+{% block content %}
+<h1>Список товаров</h1>
+{% for data in dataset %}
+{{ data }}
+<hr>
+{% endfor %}
+{% endblock %}
