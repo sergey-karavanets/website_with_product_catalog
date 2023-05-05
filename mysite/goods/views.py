@@ -2,7 +2,7 @@ from django.http import Http404
 
 from .models import Product, Category
 from .forms import ProductForm, CategoryForm
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
 
 def create_product(request):
@@ -45,3 +45,21 @@ def product_detail_view(request, id):
         raise Http404('Товар не найден')
 
     return render(request, 'detail_view.html', {'data': data})
+
+
+def update_product(request, id):
+    try:
+        old_data = get_object_or_404(Product, id=id)
+    except Exception:
+        raise Http404('Товар не найден')
+    if request.method == 'POST':
+        form = ProductForm(request.POST, instance=old_data)
+        if form.is_valid():
+            form.save()
+            return redirect(f'/{id}')
+    else:
+        form = ProductForm(instance=old_data)
+        context = {
+            'form': form
+        }
+        return render(request, 'update_product.html', context)
