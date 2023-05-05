@@ -63,3 +63,16 @@ def update_product(request, id):
             'form': form
         }
         return render(request, 'update_product.html', context)
+
+
+def delete_product(request, id):
+    try:
+        data = get_object_or_404(Product, id=id)
+    except Exception:
+        raise Http404('Товар не найден')
+
+    if request.method == 'POST':
+        data.delete()
+        return redirect('/')
+    else:
+        return render(request, 'delete_product.html', {'data': data})
