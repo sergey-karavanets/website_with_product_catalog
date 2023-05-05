@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}
+<title>{{ data.name }}</title>
+{% endblock %}
+{% block content %}
+<h1>{{ data.name }}</h1>
+Артикул: {{ data.vendor_code}}<br>
+Цена товара: {{ data.price}} руб.<br>
+Описание: {{ data.description}}<br>
+Категория товара: {{ data.category.name }}<br>
+<hr/>
+{% endblock %}
