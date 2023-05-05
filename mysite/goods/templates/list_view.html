@@ -4,11 +4,16 @@
 {% endblock %}
 {% block content %}
 <h1>Список товаров</h1>
-{% for data in dataset %}
-{{ data }}
-<a href='/{{ data.id }}'>Подробнее</a>
-<a href='/update/{{ data.id }}'>| Обновить</a>
-<a href='/delete/{{ data.id }}'>| Удалить</a>
-<hr>
+{% for category in dataset_categories %}
+    <h2>{{ category.name }}</h2>
+    {% for data in dataset_products %}
+        {% if data.category.name == category.name %}
+            {{ data.name }}
+            <a href='/{{ data.id }}'>Подробнее</a>
+            <a href='/update/{{ data.id }}'>| Изменить</a>
+            <a href='/delete/{{ data.id }}'>| Удалить</a>
+            <hr>
+        {% endif %}
+    {% endfor %}
 {% endfor %}
 {% endblock %}
