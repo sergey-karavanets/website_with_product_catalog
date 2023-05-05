@@ -1,3 +1,47 @@
-from django.shortcuts import render
+from django.http import Http404
 
-# Create your views here.
+from .models import Product, Category
+from .forms import ProductForm, CategoryForm
+from django.shortcuts import render, redirect
+
+
+def create_product(request):
+    if request.method == 'POST':
+        form = ProductForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+    else:
+        form = ProductForm()
+        context = {
+            'form': form
+        }
+        return render(request, 'create_product.html', context)
+
+
+def create_category(request):
+    if request.method == 'POST':
+        form = CategoryForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+    else:
+        form = CategoryForm()
+        context = {
+            'form': form
+        }
+        return render(request, 'create_category.html', context)
+
+
+def product_view(request):
+    dataset = Product.objects.all()
+    return render(request, 'list_view.html', {'dataset': dataset})
+
+
+def product_detail_view(request, id):
+    try:
+        data = Product.objects.get(id=id)
+    except Product.DoesNotExist:
+        raise Http404('Товар не найден')
+
+    return render(request, 'detail_view.html', {'data': data})
