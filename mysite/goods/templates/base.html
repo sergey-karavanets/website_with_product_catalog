@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    {% block title %}
+    {% endblock %}
+</head>
+<body>
+<div id="list_view">
+    <a href="/" >Список продуктов</a>
+</div>
+<div id="create_product">
+    <a href="/create_product" >Добавить товар</a>
+</div>
+<div id="create_category">
+    <a href="/create_category" >Добавить категорию товара</a>
+</div>
+<div id="content">
+    {% block content %}
+    {% endblock %}
+</div>
+</body>
+</html>
