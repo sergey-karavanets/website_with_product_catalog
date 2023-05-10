@@ -5,15 +5,6 @@
 {% block content %}
 <h1>{{ title }}</h1>
 {% for category in dataset_categories %}
-    <h2>{{ category.name }}</h2>
-    {% for data in dataset_products %}
-        {% if data.category.name == category.name %}
-            {{ data.name }}
-            <a href='/{{ data.id }}'>Подробнее</a>
-            <a href='/update/{{ data.id }}'>| Изменить</a>
-            <a href='/delete/{{ data.id }}'>| Удалить</a>
-            <hr>
-        {% endif %}
-    {% endfor %}
+    <h2><a href='/category/{{ category.id }}'>{{ category.name }}</a></h2>
 {% endfor %}
 {% endblock %}
