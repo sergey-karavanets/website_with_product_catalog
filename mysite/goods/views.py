@@ -29,7 +29,8 @@ def create_category(request):
     else:
         form = CategoryForm()
         context = {
-            'form': form
+            'form': form,
+            'title': 'Добавить категорию товара'
         }
         return render(request, 'create_category.html', context)
 
