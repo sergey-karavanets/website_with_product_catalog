@@ -50,6 +50,10 @@ def product_detail_view(request, id):
         data = Product.objects.get(id=id)
     except Product.DoesNotExist:
         raise Http404('Товар не найден')
+    context = {
+        'data': data,
+    }
+    return render(request, 'detail_view.html', context)
 
 
 def category_detail_view(request, id):
