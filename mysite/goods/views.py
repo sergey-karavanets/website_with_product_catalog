@@ -36,13 +36,13 @@ def create_category(request):
         return render(request, 'create_category.html', context)
 
 
-def product_view(request):
-    dataset_products = Product.objects.all()
+def category_view(request):
     dataset_categories = Category.objects.all()
-    return render(request, 'list_view.html', {
-        'dataset_products': dataset_products,
+    context = {
         'dataset_categories': dataset_categories,
-    })
+        'title': 'Список категорий товаров'
+    }
+    return render(request, 'list_view.html', context)
 
 
 def product_detail_view(request, id):
