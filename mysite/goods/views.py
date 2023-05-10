@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.http import Http404
 
 from .models import Product, Category
@@ -83,3 +84,20 @@ def delete_product(request, id):
         return redirect('/')
     else:
         return render(request, 'delete_product.html', {'data': data})
+
+
+def search_results(request):
+    query = request.GET.get('q')
+    if query is None:
+        data = Product.objects.all()
+    else:
+        data = Product.objects.filter(
+            Q(vendor_code__icontains=query) |
+            Q(name__icontains=query) |
+            Q(price__icontains=query) |
+            Q(description__icontains=query))
+    context = {
+        'title': 'Результат поиска',
+        'data': data
+    }
+    return render(request, 'search.html', context)
