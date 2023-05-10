@@ -62,11 +62,12 @@ def update_product(request, id):
         form = ProductForm(request.POST, instance=old_data)
         if form.is_valid():
             form.save()
-            return redirect(f'/{id}')
+            return redirect(f'/product/{id}')
     else:
         form = ProductForm(instance=old_data)
         context = {
-            'form': form
+            'form': form,
+            'title': 'Обновить товар'
         }
         return render(request, 'update_product.html', context)
 
