@@ -51,7 +51,18 @@ def product_detail_view(request, id):
     except Product.DoesNotExist:
         raise Http404('Товар не найден')
 
-    return render(request, 'detail_view.html', {'data': data})
+
+def category_detail_view(request, id):
+    try:
+        category = Category.objects.get(id=id)
+        data = Product.objects.filter(category=id)
+    except Category.DoesNotExist:
+        raise Http404('Категория товара не найдена')
+    context = {
+        'data': data,
+        'category': category
+    }
+    return render (request, 'category_view.html', context)
 
 
 def update_product(request, id):
