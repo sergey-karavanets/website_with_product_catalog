@@ -14,7 +14,8 @@ def create_product(request):
     else:
         form = ProductForm()
         context = {
-            'form': form
+            'form': form,
+            'title': 'Добавить товар'
         }
         return render(request, 'create_product.html', context)
 
