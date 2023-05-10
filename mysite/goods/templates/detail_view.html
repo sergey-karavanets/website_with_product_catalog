@@ -8,5 +8,8 @@
 Цена товара: {{ data.price}} руб.<br>
 Описание: {{ data.description}}<br>
 Категория товара: {{ data.category.name }}<br>
+<a href='/category/{{ data.category.id }}'>Вернуться</a>
+<a href='/update/{{ data.id }}'>| Изменить</a>
+<a href='/delete/{{ data.id }}'>| Удалить</a>
 <hr/>
 {% endblock %}
